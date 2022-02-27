@@ -5,7 +5,7 @@ A debuggin tool for WordPress.
 Adding the logs
 ```php
 BitLog()->push( 'test-1', '123', __FILE__, __LINE__ );
-BitLog()->push( 'test-2', '123', __FILE__, __LINE__ );
+BitLog()->push( 'test-2', '456', __FILE__, __LINE__ );
 ```
 
 See the debug logs to this URL 
