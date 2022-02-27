@@ -1,5 +1,5 @@
 # Bit Log
-A debuggin tool for WordPress.
+A PHP debuggin tool for WordPress.
 
 ## How to use it
 Adding the logs

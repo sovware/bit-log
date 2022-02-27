@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       Bit Log
  * Plugin URI:        https://github.com/sovware/bit-log
- * Description:       A debugging tool for WordPress
+ * Description:       A PHP debugging tool for WordPress
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
