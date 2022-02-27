@@ -55,22 +55,22 @@ final class BitLog {
             $this->clear_logs();
         }
 
-        $logs = get_option( $this->option_key, [] );
-        $namespace = ( isset( $request['group'] ) ) ? $request['group'] : '';
+        $logs  = get_option( $this->option_key, [] );
+        $group = ( isset( $request['group'] ) ) ? $request['group'] : '';
 
-        if ( empty( $namespace ) ) {
+        if ( empty( $group ) ) {
             $this->clear_logs();
             return $logs;
         }
 
-        if ( ! isset( $logs[ $namespace ] ) ) {
+        if ( ! isset( $logs[ $group ] ) ) {
             $this->clear_logs();
             return [];
         }
 
         $this->clear_logs();
 
-        return $logs[ $namespace ];
+        return $logs[ $group ];
     }
 
     public static function get_instance() {
@@ -81,10 +81,10 @@ final class BitLog {
         return self::$instance;
     }
 
-    public function push( $namespace, $data, $file = __FILE__, $line = __LINE__ ) {
+    public function push( $group, $data, $file = __FILE__, $line = __LINE__ ) {
         $logs = get_option( $this->option_key, [] );
 
-        $logs[ $namespace ][] = [
+        $logs[ $group ][] = [
             'file'      => $file,
             'line'      => $line,
             'data_type' => gettype( $data ),
