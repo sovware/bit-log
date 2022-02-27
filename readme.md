@@ -13,7 +13,7 @@ See the debug logs to this URL
 example.com/wp-json/bit-log/v1/logs
 ```
 
-You can filter the logs by group following way
+You can filter the logs by the group following way.
 ```
 example.com/wp-json/bit-log/v1/logs?group=test-1
 ```
