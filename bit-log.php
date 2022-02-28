@@ -49,26 +49,73 @@ final class BitLog {
         );
     }
 
-    public function get_rest_api_logs( $request ) {
-
-        if ( ! empty( $request['reset'] ) ) {
-            $this->clear_logs();
+    public static function isTruthy( $value ) {
+        if ( true === $value ) {
+            return true;
         }
+
+        if ( 'true' === $value ) {
+            return true;
+        }
+
+        if ( 1 === $value ) {
+            return true;
+        }
+
+        if ( '1' === $value ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function isFalsy( $value ) {
+        if ( false === $value ) {
+            return true;
+        }
+
+        if ( 'false' === $value ) {
+            return true;
+        }
+
+        if ( 0 === $value ) {
+            return true;
+        }
+
+        if ( '0' === $value ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function get_rest_api_logs( $request ) {
 
         $logs  = get_option( $this->option_key, [] );
         $group = ( isset( $request['group'] ) ) ? $request['group'] : '';
 
+        $reset = true;
+
+        if ( isset( $request['reset'] ) && self::isFalsy( $request['reset'] ) ) {
+            $reset = false;
+        }
+
         if ( empty( $group ) ) {
-            $this->clear_logs();
+
+            if ( $reset ) {
+                $this->clear_logs();
+            }
+
             return $logs;
         }
 
         if ( ! isset( $logs[ $group ] ) ) {
-            $this->clear_logs();
             return [];
         }
 
-        $this->clear_logs();
+        if ( $reset ) {
+            $this->clear_logs();
+        }
 
         return $logs[ $group ];
     }
